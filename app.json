@@ -1,0 +1,35 @@
+{
+  "expo": {
+    "name": "JobTracker",
+    "slug": "jobtracker",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "jobtracker",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "edgeToEdgeEnabled": true,
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "output": "static"
+    },
+    "plugins": [
+      "expo-router"
+    ],
+    "experiments": {
+      "typedRoutes": true,
+      "reactCompiler": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "06d75d68-9cea-4807-876b-84405473972b"
+      }
+    },
+    "owner": "arranbearman"
+  }
+}
