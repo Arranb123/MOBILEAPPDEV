@@ -30,6 +30,12 @@
         "projectId": "06d75d68-9cea-4807-876b-84405473972b"
       }
     },
-    "owner": "arranbearman"
+    "owner": "arranbearman",
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/06d75d68-9cea-4807-876b-84405473972b"
+    }
   }
 }

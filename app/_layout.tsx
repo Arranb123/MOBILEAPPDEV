@@ -1,7 +1,7 @@
 import { Stack } from 'expo-router';
 import { createContext, useEffect, useState } from 'react';
 import { db } from '@/db/client';
-import { applications as applicationsTable, categories as categoriesTable, sessions as sessionsTable, settings as settingsTable, users as usersTable } from '@/db/schema';
+import { applications as applicationsTable, categories as categoriesTable, sessions as sessionsTable, users as usersTable } from '@/db/schema';
 import { seedIfEmpty } from '@/db/seed';
 import { eq } from 'drizzle-orm';
 
@@ -37,10 +37,6 @@ type AppContextType = {
   currentUser: User | null;
   setCurrentUser: React.Dispatch<React.SetStateAction<User | null>>;
   isLoading: boolean;
-  theme: 'light' | 'dark';
-  setTheme: React.Dispatch<React.SetStateAction<'light' | 'dark'>>;
-  notificationsEnabled: boolean;
-  setNotificationsEnabled: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const AppContext = createContext<AppContextType | null>(null);
@@ -50,8 +46,6 @@ export default function RootLayout() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
-  const [notificationsEnabled, setNotificationsEnabled] = useState(false);
 
   useEffect(() => {
     const load = async () => {
@@ -68,11 +62,6 @@ export default function RootLayout() {
         if (userRows.length > 0) setCurrentUser(userRows[0]);
       }
 
-      const settingsRows = await db.select().from(settingsTable);
-      const map = Object.fromEntries(settingsRows.map(r => [r.key, r.value]));
-      if (map['theme'] === 'dark') setTheme('dark');
-      if (map['notifications_enabled'] === 'true') setNotificationsEnabled(true);
-
       setIsLoading(false);
     };
 
@@ -85,8 +74,6 @@ export default function RootLayout() {
       categories, setCategories,
       currentUser, setCurrentUser,
       isLoading,
-      theme, setTheme,
-      notificationsEnabled, setNotificationsEnabled,
     }}>
       <Stack>
         <Stack.Screen name="login" options={{ headerShown: false }} />

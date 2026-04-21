@@ -3,7 +3,6 @@ import PrimaryButton from '@/components/ui/primary-button';
 import ScreenHeader from '@/components/ui/screen-header';
 import { db } from '@/db/client';
 import { sessions as sessionsTable, users as usersTable } from '@/db/schema';
-import { useTheme } from '@/hooks/use-theme';
 import { eq } from 'drizzle-orm';
 import { useRouter } from 'expo-router';
 import { useContext, useState } from 'react';
@@ -14,7 +13,6 @@ import { AppContext } from './_layout';
 export default function RegisterScreen() {
   const router = useRouter();
   const context = useContext(AppContext);
-  const t = useTheme();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -59,7 +57,7 @@ export default function RegisterScreen() {
   };
 
   return (
-    <SafeAreaView style={[styles.safeArea, { backgroundColor: t.background }]}>
+    <SafeAreaView style={styles.safeArea}>
       <ScreenHeader title="Create Account" subtitle="Register to get started." />
       <View style={styles.form}>
         <FormField label="Name" value={name} onChangeText={setName} placeholder="Your name" />
@@ -76,7 +74,7 @@ export default function RegisterScreen() {
 }
 
 const styles = StyleSheet.create({
-  safeArea: { flex: 1, padding: 20 },
+  safeArea: { backgroundColor: '#FFF7ED', flex: 1, padding: 20 },
   form: { marginBottom: 6 },
   buttonSpacing: { marginTop: 10 },
   error: { color: '#B91C1C', fontSize: 13, marginBottom: 12 },

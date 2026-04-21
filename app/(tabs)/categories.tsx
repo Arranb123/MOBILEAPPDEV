@@ -3,7 +3,6 @@ import PrimaryButton from '@/components/ui/primary-button';
 import ScreenHeader from '@/components/ui/screen-header';
 import { db } from '@/db/client';
 import { categories as categoriesTable } from '@/db/schema';
-import { useTheme } from '@/hooks/use-theme';
 import { eq } from 'drizzle-orm';
 import { useRouter } from 'expo-router';
 import { useContext } from 'react';
@@ -14,7 +13,6 @@ import { AppContext } from '../_layout';
 export default function CategoriesScreen() {
   const router = useRouter();
   const context = useContext(AppContext);
-  const t = useTheme();
 
   if (!context) return null;
   const { categories, setCategories } = context;
@@ -26,12 +24,12 @@ export default function CategoriesScreen() {
   };
 
   return (
-    <SafeAreaView style={[styles.safeArea, { backgroundColor: t.background }]}>
+    <SafeAreaView style={styles.safeArea}>
       <ScreenHeader title="Categories" subtitle={`${categories.length} categories`} />
       <PrimaryButton label="Add Category" onPress={() => router.push({ pathname: '../category/add' })} />
       <ScrollView contentContainerStyle={styles.listContent} showsVerticalScrollIndicator={false}>
         {categories.length === 0 ? (
-          <Text style={[styles.empty, { color: t.textMuted }]}>No categories yet. Add one to get started.</Text>
+          <Text style={styles.empty}>No categories yet. Add one to get started.</Text>
         ) : (
           categories.map(cat => (
             <CategoryCard key={cat.id} category={cat} onDelete={deleteCategory} />
@@ -43,7 +41,7 @@ export default function CategoriesScreen() {
 }
 
 const styles = StyleSheet.create({
-  safeArea: { flex: 1, paddingHorizontal: 18, paddingTop: 10 },
+  safeArea: { backgroundColor: '#FFF7ED', flex: 1, paddingHorizontal: 18, paddingTop: 10 },
   listContent: { paddingBottom: 24, paddingTop: 14 },
-  empty: { fontSize: 14, marginTop: 32, textAlign: 'center' },
+  empty: { color: '#9CA3AF', fontSize: 14, marginTop: 32, textAlign: 'center' },
 });

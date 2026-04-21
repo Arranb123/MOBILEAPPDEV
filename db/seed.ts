@@ -13,9 +13,9 @@ export async function seedIfEmpty() {
   if (existingCats.length > 0) return;
 
   await db.insert(categories).values([
-    { name: 'Technology', color: '#0F766E', icon: '💻' },
-    { name: 'Finance', color: '#1D4ED8', icon: '💰' },
-    { name: 'Marketing', color: '#9333EA', icon: '📢' },
+    { name: 'Technology', color: '#0F766E', icon: '' },
+    { name: 'Finance', color: '#1D4ED8', icon: '' },
+    { name: 'Marketing', color: '#9333EA', icon: '' },
   ]);
 
   const cats = await db.select().from(categories);
