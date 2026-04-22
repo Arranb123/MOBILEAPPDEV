@@ -16,21 +16,21 @@ export default function InfoTag({ label, value }: Props) {
 
 const styles = StyleSheet.create({
   tag: {
-    backgroundColor: '#EFF6FF',
-    borderRadius: 999,
+    backgroundColor: '#FEF3C7',
     flexDirection: 'row',
+    marginBottom: 6,
     marginRight: 8,
-    paddingHorizontal: 10,
-    paddingVertical: 6,
+    paddingHorizontal: 8,
+    paddingVertical: 4,
   },
   label: {
-    color: '#1D4ED8',
+    color: '#92400E',
     fontSize: 12,
     fontWeight: '600',
     marginRight: 4,
   },
   value: {
-    color: '#1E3A8A',
+    color: '#78350F',
     fontSize: 12,
     fontWeight: '500',
   },

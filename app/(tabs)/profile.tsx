@@ -1,13 +1,13 @@
 import PrimaryButton from '@/components/ui/primary-button';
 import ScreenHeader from '@/components/ui/screen-header';
 import { db } from '@/db/client';
-import { applications as applicationsTable, categories as categoriesTable, sessions as sessionsTable, statusLogs as statusLogsTable, targets as targetsTable, users as usersTable } from '@/db/schema';
+import { applications as applicationsTable, categories as categoriesTable, sessions as sessionsTable, settings as settingsTable, statusLogs as statusLogsTable, targets as targetsTable, users as usersTable } from '@/db/schema';
 import { eq } from 'drizzle-orm';
 import * as FileSystem from 'expo-file-system';
 import { useRouter } from 'expo-router';
 import * as Sharing from 'expo-sharing';
 import { useContext } from 'react';
-import { Alert, StyleSheet, Text, View } from 'react-native';
+import { Alert, StyleSheet, Switch, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { AppContext } from '../_layout';
 
@@ -16,8 +16,14 @@ export default function ProfileScreen() {
   const context = useContext(AppContext);
 
   if (!context) return null;
-  const { currentUser, setCurrentUser, setApplications, setCategories } = context;
+  const { currentUser, setCurrentUser, setApplications, setCategories, darkMode, setDarkMode } = context;
   if (!currentUser) return null;
+
+  const toggleDarkMode = async (value: boolean) => {
+    setDarkMode(value);
+    await db.insert(settingsTable).values({ key: 'darkMode', value: String(value) })
+      .onConflictDoUpdate({ target: settingsTable.key, set: { value: String(value) } });
+  };
 
   const logout = async () => {
     await db.delete(sessionsTable);
@@ -58,39 +64,57 @@ export default function ProfileScreen() {
     router.replace('/login');
   };
 
+  const bg = darkMode ? '#111827' : '#FFF7ED';
+  const cardBg = darkMode ? '#1F2937' : '#FFFFFF';
+  const textPrimary = darkMode ? '#F9FAFB' : '#111827';
+  const textSecondary = darkMode ? '#9CA3AF' : '#6B7280';
+
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView style={[styles.safeArea, { backgroundColor: bg }]}>
       <ScreenHeader title="Profile" subtitle="Your account details." />
-      <View style={styles.infoCard}>
+      <View style={[styles.infoCard, { backgroundColor: cardBg }]}>
         <View style={styles.infoRow}>
-          <Text style={styles.infoLabel}>Name</Text>
-          <Text style={styles.infoValue}>{currentUser.name}</Text>
+          <Text style={[styles.infoLabel, { color: textSecondary }]}>Name</Text>
+          <Text style={[styles.infoValue, { color: textPrimary }]}>{currentUser.name}</Text>
         </View>
         <View style={styles.divider} />
         <View style={styles.infoRow}>
-          <Text style={styles.infoLabel}>Email</Text>
-          <Text style={styles.infoValue}>{currentUser.email}</Text>
+          <Text style={[styles.infoLabel, { color: textSecondary }]}>Email</Text>
+          <Text style={[styles.infoValue, { color: textPrimary }]}>{currentUser.email}</Text>
         </View>
       </View>
-      <PrimaryButton label="Export to CSV" onPress={exportCSV} />
+      <View style={[styles.toggleRow, { backgroundColor: cardBg }]}>
+        <Text style={[styles.toggleLabel, { color: textPrimary }]}>Dark Mode</Text>
+        <Switch
+          value={darkMode}
+          onValueChange={toggleDarkMode}
+          trackColor={{ false: '#D1D5DB', true: '#C2410C' }}
+          thumbColor="#FFFFFF"
+        />
+      </View>
+      <View style={styles.buttonSpacing}>
+        <PrimaryButton label="Export to CSV" onPress={exportCSV} />
+      </View>
       <View style={styles.buttonSpacing}>
         <PrimaryButton label="Logout" variant="secondary" onPress={logout} />
       </View>
       <View style={styles.buttonSpacing}>
         <PrimaryButton label="Delete Profile" variant="danger" onPress={deleteProfile} />
       </View>
-      <Text style={styles.warning}>Deleting your profile removes all data permanently.</Text>
+      <Text style={[styles.warning, { color: textSecondary }]}>Deleting your profile removes all data permanently.</Text>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  safeArea: { backgroundColor: '#FFF7ED', flex: 1, padding: 20 },
-  infoCard: { backgroundColor: '#FFFFFF', borderColor: '#E5E7EB', borderWidth: 1, marginBottom: 24, padding: 16 },
+  safeArea: { flex: 1, padding: 20 },
+  infoCard: { borderColor: '#E5E7EB', borderWidth: 1, marginBottom: 16, padding: 16 },
   infoRow: { flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 6 },
   divider: { backgroundColor: '#F3F4F6', height: 1, marginVertical: 4 },
-  infoLabel: { color: '#6B7280', fontSize: 14 },
-  infoValue: { color: '#111827', fontSize: 14, fontWeight: '600' },
+  infoLabel: { fontSize: 14 },
+  infoValue: { fontSize: 14, fontWeight: '600' },
+  toggleRow: { alignItems: 'center', borderColor: '#E5E7EB', borderWidth: 1, flexDirection: 'row', justifyContent: 'space-between', marginBottom: 4, padding: 16 },
+  toggleLabel: { fontSize: 14, fontWeight: '600' },
   buttonSpacing: { marginTop: 10 },
-  warning: { color: '#9CA3AF', fontSize: 12, marginTop: 16, textAlign: 'center' },
+  warning: { fontSize: 12, marginTop: 16, textAlign: 'center' },
 });
