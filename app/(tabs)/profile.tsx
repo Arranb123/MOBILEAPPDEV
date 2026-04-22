@@ -3,9 +3,11 @@ import ScreenHeader from '@/components/ui/screen-header';
 import { db } from '@/db/client';
 import { applications as applicationsTable, categories as categoriesTable, sessions as sessionsTable, statusLogs as statusLogsTable, targets as targetsTable, users as usersTable } from '@/db/schema';
 import { eq } from 'drizzle-orm';
+import * as FileSystem from 'expo-file-system';
 import { useRouter } from 'expo-router';
+import * as Sharing from 'expo-sharing';
 import { useContext } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Alert, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { AppContext } from '../_layout';
 
@@ -21,6 +23,26 @@ export default function ProfileScreen() {
     await db.delete(sessionsTable);
     setCurrentUser(null);
     router.replace('/login');
+  };
+
+  const exportCSV = async () => {
+    const { applications, categories } = context;
+    const header = 'Company,Role,Status,Date,Category\n';
+    const rows = applications.map(a => {
+      const cat = categories.find(c => c.id === a.categoryId)?.name ?? '';
+      const company = `"${(a.company ?? '').replace(/"/g, '""')}"`;
+      const role = `"${(a.role ?? '').replace(/"/g, '""')}"`;
+      return `${company},${role},${a.status},${a.date},${cat}`;
+    }).join('\n');
+    const csv = header + rows;
+    const path = FileSystem.documentDirectory + 'applications.csv';
+    await FileSystem.writeAsStringAsync(path, csv, { encoding: FileSystem.EncodingType.UTF8 });
+    const canShare = await Sharing.isAvailableAsync();
+    if (canShare) {
+      await Sharing.shareAsync(path, { mimeType: 'text/csv', dialogTitle: 'Export Applications' });
+    } else {
+      Alert.alert('Saved', `CSV saved to: ${path}`);
+    }
   };
 
   const deleteProfile = async () => {
@@ -50,7 +72,10 @@ export default function ProfileScreen() {
           <Text style={styles.infoValue}>{currentUser.email}</Text>
         </View>
       </View>
-      <PrimaryButton label="Logout" variant="secondary" onPress={logout} />
+      <PrimaryButton label="Export to CSV" onPress={exportCSV} />
+      <View style={styles.buttonSpacing}>
+        <PrimaryButton label="Logout" variant="secondary" onPress={logout} />
+      </View>
       <View style={styles.buttonSpacing}>
         <PrimaryButton label="Delete Profile" variant="danger" onPress={deleteProfile} />
       </View>

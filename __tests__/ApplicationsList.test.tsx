@@ -24,8 +24,8 @@ const mockContext = {
     { id: 3, company: 'Stripe', role: 'Backend Engineer', date: '2026-03-10', status: 'Offer', categoryId: 2, notes: 'Great team' },
   ],
   categories: [
-    { id: 1, name: 'Technology', color: '#0F766E', icon: '💻' },
-    { id: 2, name: 'Finance', color: '#1D4ED8', icon: '💰' },
+    { id: 1, name: 'Technology', color: '#0F766E', icon: '' },
+    { id: 2, name: 'Finance', color: '#1D4ED8', icon: '' },
   ],
   currentUser: { id: 1, name: 'Demo User', email: 'demo@example.com', password: 'password' },
   setApplications: jest.fn(),

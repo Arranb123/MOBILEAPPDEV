@@ -5,6 +5,6 @@ export default {
   out: './drizzle',
   dialect: 'sqlite',
   dbCredentials: {
-    url: './students.db',
+    url: './jobtracker.db',
   },
 } satisfies Config;

@@ -43,9 +43,9 @@ function getMocks() {
 }
 
 const mockCategories = [
-  { id: 1, name: 'Technology', color: '#0F766E', icon: '💻' },
-  { id: 2, name: 'Finance', color: '#1D4ED8', icon: '💰' },
-  { id: 3, name: 'Marketing', color: '#9333EA', icon: '📢' },
+  { id: 1, name: 'Technology', color: '#0F766E', icon: '' },
+  { id: 2, name: 'Finance', color: '#1D4ED8', icon: '' },
+  { id: 3, name: 'Marketing', color: '#9333EA', icon: '' },
 ];
 
 const mockApplications = [
@@ -114,7 +114,7 @@ describe('seedIfEmpty', () => {
     __mockFrom.mockReset();
     __mockFrom
       .mockResolvedValueOnce([])  // users empty → seed user
-      .mockResolvedValueOnce([{ id: 1, name: 'Technology', color: '#0F766E', icon: '💻' }]); // categories not empty → stop
+      .mockResolvedValueOnce([{ id: 1, name: 'Technology', color: '#0F766E', icon: '' }]); // categories not empty → stop
 
     await seedIfEmpty();
 
