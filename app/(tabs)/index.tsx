@@ -29,15 +29,15 @@ export default function IndexScreen() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <ScreenHeader title="Applications" subtitle={`${filtered.length} of ${applications.length} shown`} />
-      <PrimaryButton label="Add Application" onPress={() => router.push({ pathname: '../add' })} />
+      <PrimaryButton label="+ Add Application" onPress={() => router.push({ pathname: '../add' })} />
       <TextInput
         placeholder="Search company or role..."
-        placeholderTextColor="#9CA3AF"
+        placeholderTextColor="#94A3B8"
         value={searchText}
         onChangeText={setSearchText}
         style={styles.searchInput}
       />
-      <View style={styles.chipRow}>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.chipScroll} contentContainerStyle={styles.chipRow}>
         <Pressable onPress={() => setFilterCategoryId(null)} style={[styles.chip, !filterCategoryId && styles.chipActive]}>
           <Text style={[styles.chipText, !filterCategoryId && styles.chipTextActive]}>All</Text>
         </Pressable>
@@ -50,15 +50,15 @@ export default function IndexScreen() {
             <Text style={[styles.chipText, filterCategoryId === cat.id && styles.chipTextActive]}>{cat.name}</Text>
           </Pressable>
         ))}
-      </View>
+      </ScrollView>
       <View style={styles.dateRow}>
         <View style={styles.dateField}>
-          <Text style={styles.dateLabel}>From</Text>
-          <TextInput placeholder="YYYY-MM-DD" placeholderTextColor="#9CA3AF" value={fromDate} onChangeText={setFromDate} style={styles.dateInput} />
+          <Text style={styles.dateLabel}>FROM</Text>
+          <TextInput placeholder="YYYY-MM-DD" placeholderTextColor="#94A3B8" value={fromDate} onChangeText={setFromDate} style={styles.dateInput} />
         </View>
         <View style={styles.dateField}>
-          <Text style={styles.dateLabel}>To</Text>
-          <TextInput placeholder="YYYY-MM-DD" placeholderTextColor="#9CA3AF" value={toDate} onChangeText={setToDate} style={styles.dateInput} />
+          <Text style={styles.dateLabel}>TO</Text>
+          <TextInput placeholder="YYYY-MM-DD" placeholderTextColor="#94A3B8" value={toDate} onChangeText={setToDate} style={styles.dateInput} />
         </View>
       </View>
       <ScrollView contentContainerStyle={styles.listContent} showsVerticalScrollIndicator={false}>
@@ -73,17 +73,37 @@ export default function IndexScreen() {
 }
 
 const styles = StyleSheet.create({
-  safeArea: { backgroundColor: '#FFF7ED', flex: 1, paddingHorizontal: 18, paddingTop: 10 },
-  searchInput: { backgroundColor: '#FFFFFF', borderColor: '#CBD5E1', borderWidth: 1, color: '#111827', fontSize: 14, marginTop: 12, paddingHorizontal: 12, paddingVertical: 10 },
-  chipRow: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginTop: 10 },
-  chip: { borderColor: '#CBD5E1', borderWidth: 1.5, marginRight: 8, paddingHorizontal: 14, paddingVertical: 6 },
-  chipActive: { backgroundColor: '#C2410C', borderColor: '#C2410C' },
-  chipText: { color: '#374151', fontSize: 13, fontWeight: '500' },
-  chipTextActive: { color: '#FFFFFF', fontWeight: '600' },
-  dateRow: { flexDirection: 'row', gap: 10, marginTop: 10 },
+  safeArea: { backgroundColor: '#F1F5F9', flex: 1, paddingHorizontal: 18, paddingTop: 10 },
+  searchInput: {
+    backgroundColor: '#FFFFFF',
+    borderColor: '#E2E8F0',
+    borderRadius: 10,
+    borderWidth: 1.5,
+    color: '#111827',
+    fontSize: 14,
+    marginTop: 14,
+    paddingHorizontal: 14,
+    paddingVertical: 11,
+  },
+  chipScroll: { marginTop: 12 },
+  chipRow: { flexDirection: 'row', gap: 8, paddingRight: 4 },
+  chip: { borderColor: '#CBD5E1', borderRadius: 20, borderWidth: 1.5, paddingHorizontal: 16, paddingVertical: 7 },
+  chipActive: { backgroundColor: '#EA580C', borderColor: '#EA580C' },
+  chipText: { color: '#475569', fontSize: 13, fontWeight: '600' },
+  chipTextActive: { color: '#FFFFFF', fontWeight: '700' },
+  dateRow: { flexDirection: 'row', gap: 10, marginTop: 12 },
   dateField: { flex: 1 },
-  dateLabel: { color: '#6B7280', fontSize: 11, fontWeight: '600', marginBottom: 4 },
-  dateInput: { backgroundColor: '#FFFFFF', borderColor: '#CBD5E1', borderWidth: 1, color: '#111827', fontSize: 13, paddingHorizontal: 10, paddingVertical: 8 },
+  dateLabel: { color: '#64748B', fontSize: 10, fontWeight: '700', letterSpacing: 0.5, marginBottom: 5 },
+  dateInput: {
+    backgroundColor: '#FFFFFF',
+    borderColor: '#E2E8F0',
+    borderRadius: 8,
+    borderWidth: 1.5,
+    color: '#111827',
+    fontSize: 13,
+    paddingHorizontal: 10,
+    paddingVertical: 9,
+  },
   listContent: { paddingBottom: 24, paddingTop: 14 },
-  empty: { color: '#9CA3AF', fontSize: 14, marginTop: 32, textAlign: 'center' },
+  empty: { color: '#94A3B8', fontSize: 14, marginTop: 48, textAlign: 'center' },
 });

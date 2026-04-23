@@ -29,12 +29,12 @@ export default function PrimaryButton({ label, onPress, compact = false, variant
 }
 
 const styles = StyleSheet.create({
-  button: { alignItems: 'center', backgroundColor: '#C2410C', paddingHorizontal: 14, paddingVertical: 11 },
-  secondary: { backgroundColor: '#FFFFFF', borderColor: '#CBD5E1', borderWidth: 1 },
-  danger: { backgroundColor: '#B91C1C' },
-  compact: { alignSelf: 'flex-start', marginTop: 12, paddingHorizontal: 12, paddingVertical: 8 },
-  pressed: { opacity: 0.85 },
-  label: { color: '#FFFFFF', fontSize: 15, fontWeight: '600' },
-  secondaryLabel: { color: '#0F172A' },
-  compactLabel: { fontSize: 13 },
+  button: { alignItems: 'center', backgroundColor: '#EA580C', borderRadius: 10, paddingHorizontal: 16, paddingVertical: 13 },
+  secondary: { backgroundColor: '#FFFFFF', borderColor: '#D1D5DB', borderWidth: 1.5 },
+  danger: { backgroundColor: '#DC2626' },
+  compact: { alignSelf: 'flex-start', borderRadius: 8, paddingHorizontal: 12, paddingVertical: 7 },
+  pressed: { opacity: 0.8 },
+  label: { color: '#FFFFFF', fontSize: 15, fontWeight: '700', letterSpacing: 0.2 },
+  secondaryLabel: { color: '#1E293B' },
+  compactLabel: { fontSize: 13, fontWeight: '600' },
 });

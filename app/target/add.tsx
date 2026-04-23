@@ -63,14 +63,14 @@ export default function AddTarget() {
 }
 
 const styles = StyleSheet.create({
-  safeArea: { backgroundColor: '#FFF7ED', flex: 1, padding: 20 },
+  safeArea: { backgroundColor: '#F1F5F9', flex: 1, padding: 20 },
   form: { marginBottom: 6 },
   buttonSpacing: { marginTop: 10 },
-  label: { color: '#334155', fontSize: 13, fontWeight: '600', marginBottom: 8 },
+  label: { color: '#374151', fontSize: 10, fontWeight: '700', letterSpacing: 0.5, marginBottom: 10, textTransform: 'uppercase' },
   periodRow: { flexDirection: 'row', gap: 8, marginBottom: 16 },
   categoryRow: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginBottom: 20 },
-  chip: { borderWidth: 1.5, paddingHorizontal: 14, paddingVertical: 7 },
-  chipActive: { backgroundColor: '#C2410C', borderColor: '#C2410C' },
-  chipText: { color: '#374151', fontSize: 13, fontWeight: '500' },
-  chipTextActive: { color: '#FFFFFF', fontWeight: '600' },
+  chip: { borderRadius: 20, borderWidth: 1.5, paddingHorizontal: 16, paddingVertical: 8 },
+  chipActive: { backgroundColor: '#EA580C', borderColor: '#EA580C' },
+  chipText: { color: '#475569', fontSize: 13, fontWeight: '600' },
+  chipTextActive: { color: '#FFFFFF', fontWeight: '700' },
 });

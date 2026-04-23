@@ -26,7 +26,20 @@ export default function FormField({ label, value, onChangeText, placeholder, sec
 }
 
 const styles = StyleSheet.create({
-  wrapper: { marginBottom: 12 },
-  label: { color: '#334155', fontSize: 13, fontWeight: '600', marginBottom: 6 },
-  input: { backgroundColor: '#FFFFFF', borderColor: '#CBD5E1', borderWidth: 1, color: '#111827', fontSize: 15, paddingHorizontal: 12, paddingVertical: 10 },
+  wrapper: { marginBottom: 14 },
+  label: { color: '#374151', fontSize: 13, fontWeight: '600', letterSpacing: 0.3, marginBottom: 6, textTransform: 'uppercase' },
+  input: {
+    backgroundColor: '#FFFFFF',
+    borderColor: '#E2E8F0',
+    borderRadius: 10,
+    borderWidth: 1.5,
+    color: '#111827',
+    fontSize: 15,
+    paddingHorizontal: 14,
+    paddingVertical: 12,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.04,
+    shadowRadius: 2,
+  },
 });

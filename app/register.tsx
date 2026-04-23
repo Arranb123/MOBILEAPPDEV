@@ -58,24 +58,39 @@ export default function RegisterScreen() {
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <ScreenHeader title="Create Account" subtitle="Register to get started." />
-      <View style={styles.form}>
-        <FormField label="Name" value={name} onChangeText={setName} placeholder="Your name" />
-        <FormField label="Email" value={email} onChangeText={setEmail} placeholder="you@example.com" />
-        <FormField label="Password" value={password} onChangeText={setPassword} placeholder="Password" secureTextEntry />
-      </View>
-      {error ? <Text style={styles.error}>{error}</Text> : null}
-      <PrimaryButton label="Register" onPress={register} />
-      <View style={styles.buttonSpacing}>
-        <PrimaryButton label="Back to Login" variant="secondary" onPress={() => router.back()} />
+      <View style={styles.card}>
+        <Text style={styles.cardTitle}>Create Account</Text>
+        <Text style={styles.cardSubtitle}>Start tracking your job applications</Text>
+        <View style={styles.form}>
+          <FormField label="Name" value={name} onChangeText={setName} placeholder="Your name" />
+          <FormField label="Email" value={email} onChangeText={setEmail} placeholder="you@example.com" />
+          <FormField label="Password" value={password} onChangeText={setPassword} placeholder="Password" secureTextEntry />
+        </View>
+        {error ? <Text style={styles.error}>{error}</Text> : null}
+        <PrimaryButton label="Create Account" onPress={register} />
+        <View style={styles.buttonSpacing}>
+          <PrimaryButton label="Back to Login" variant="secondary" onPress={() => router.back()} />
+        </View>
       </View>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  safeArea: { backgroundColor: '#FFF7ED', flex: 1, padding: 20 },
+  safeArea: { backgroundColor: '#F1F5F9', flex: 1, justifyContent: 'center', padding: 24 },
+  card: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 20,
+    elevation: 4,
+    padding: 24,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.1,
+    shadowRadius: 12,
+  },
+  cardTitle: { color: '#0F172A', fontSize: 22, fontWeight: '800', marginBottom: 4 },
+  cardSubtitle: { color: '#64748B', fontSize: 14, marginBottom: 24 },
   form: { marginBottom: 6 },
   buttonSpacing: { marginTop: 10 },
-  error: { color: '#B91C1C', fontSize: 13, marginBottom: 12 },
+  error: { color: '#DC2626', fontSize: 13, fontWeight: '500', marginBottom: 12 },
 });
