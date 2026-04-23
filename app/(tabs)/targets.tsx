@@ -37,6 +37,7 @@ export default function TargetsScreen() {
   const weekStart = getWeekStart();
   const monthStart = getMonthStart();
 
+  // counts how many aplications have been added within the target period
   const getProgress = (target: Target) => {
     const periodStart = target.period === 'weekly' ? weekStart : monthStart;
     return applications.filter((a: Application) =>
@@ -44,6 +45,7 @@ export default function TargetsScreen() {
     ).length;
   };
 
+  // removes the target from the db and updates the list
   const deleteTarget = async (id: number) => {
     await db.delete(targetsTable).where(eq(targetsTable.id, id));
     setTargets(prev => prev.filter(t => t.id !== id));

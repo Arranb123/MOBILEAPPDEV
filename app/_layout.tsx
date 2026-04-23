@@ -86,6 +86,13 @@ export default function RootLayout() {
         <Stack.Screen name="login" options={{ headerShown: false }} />
         <Stack.Screen name="register" options={{ headerShown: false }} />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="add" options={{ title: 'Add Application', headerBackTitle: 'Back' }} />
+        <Stack.Screen name="application/[id]" options={{ title: 'Application', headerBackTitle: 'Back' }} />
+        <Stack.Screen name="application/[id]/edit" options={{ title: 'Edit Application', headerBackTitle: 'Back' }} />
+        <Stack.Screen name="application/[id]/status" options={{ title: 'Update Status', headerBackTitle: 'Back' }} />
+        <Stack.Screen name="category/add" options={{ title: 'Add Category', headerBackTitle: 'Back' }} />
+        <Stack.Screen name="category/[id]/edit" options={{ title: 'Edit Category', headerBackTitle: 'Back' }} />
+        <Stack.Screen name="target/add" options={{ title: 'Add Target', headerBackTitle: 'Back' }} />
       </Stack>
     </AppContext.Provider>
   );

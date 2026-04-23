@@ -38,6 +38,7 @@ function getWeekRange(weeksAgo: number): { start: string; end: string } {
   };
 }
 
+// simple bar chart built from views, didnt want to install a whole library just for this
 function BarChart({ data }: { data: { label: string; count: number; color: string }[] }) {
   const max = Math.max(...data.map(d => d.count), 1);
   return (
@@ -105,6 +106,7 @@ export default function InsightsScreen() {
     color: cat.color,
   }));
 
+  // work out how many weeks in a row the user has hit their target
   let streak = 0;
   if (weeklyTarget > 0) {
     const curr = getWeekRange(0);

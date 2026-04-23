@@ -9,6 +9,7 @@ import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { AppContext } from './_layout';
 
+// form for adding a new job application, defaults the date to today
 export default function AddApplication() {
   const router = useRouter();
   const context = useContext(AppContext);
@@ -22,6 +23,7 @@ export default function AddApplication() {
   if (!context) return null;
   const { setApplications, categories } = context;
 
+  // saves the new application to the db and also adds an intial status log entry
   const saveApplication = async () => {
     if (!company.trim() || !role.trim()) { setError('Company and role are required.'); return; }
     if (!selectedCategoryId) { setError('Please select a category.'); return; }

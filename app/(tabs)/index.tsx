@@ -7,6 +7,7 @@ import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { AppContext } from '../_layout';
 
+// main screen, shows all the job applications the user has added
 export default function IndexScreen() {
   const router = useRouter();
   const context = useContext(AppContext);
@@ -18,6 +19,7 @@ export default function IndexScreen() {
   if (!context) return null;
   const { applications, categories } = context;
 
+  // filter the list based on search text, category and date range
   const filtered = applications.filter(app => {
     if (searchText && !app.company.toLowerCase().includes(searchText.toLowerCase()) && !app.role.toLowerCase().includes(searchText.toLowerCase())) return false;
     if (filterCategoryId && app.categoryId !== filterCategoryId) return false;

@@ -1,3 +1,4 @@
+// all the table definitions for the sqlite database using drizzle orm
 import { integer, sqliteTable, text } from 'drizzle-orm/sqlite-core';
 
 export const users = sqliteTable('users', {
@@ -44,6 +45,7 @@ export const targets = sqliteTable('targets', {
   categoryId: integer('category_id').references(() => categories.id),
 });
 
+// settings table stores things like dark mode preference as key value pairs
 export const settings = sqliteTable('settings', {
   key: text('key').primaryKey(),
   value: text('value').notNull(),

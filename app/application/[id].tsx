@@ -18,6 +18,7 @@ export default function ApplicationDetail() {
   const context = useContext(AppContext);
   const [logs, setLogs] = useState<StatusLog[]>([]);
 
+  // load the status history for this application when the screen opens
   useEffect(() => {
     const loadLogs = async () => {
       const rows = await db.select().from(statusLogsTable).where(eq(statusLogsTable.applicationId, Number(id)));
@@ -32,6 +33,7 @@ export default function ApplicationDetail() {
   if (!application) return null;
   const category = categories.find(c => c.id === application.categoryId);
 
+  // delete the application and its logs then go back to the list
   const deleteApplication = async () => {
     await db.delete(statusLogsTable).where(eq(statusLogsTable.applicationId, Number(id)));
     await db.delete(applicationsTable).where(eq(applicationsTable.id, Number(id)));

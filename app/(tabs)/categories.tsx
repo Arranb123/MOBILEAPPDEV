@@ -10,6 +10,7 @@ import { ScrollView, StyleSheet, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { AppContext } from '../_layout';
 
+// screen for managing categories, user can add edit or delete them
 export default function CategoriesScreen() {
   const router = useRouter();
   const context = useContext(AppContext);
@@ -17,6 +18,7 @@ export default function CategoriesScreen() {
   if (!context) return null;
   const { categories, setCategories } = context;
 
+  // deletes the category and refreshes the list from the database
   const deleteCategory = async (id: number) => {
     await db.delete(categoriesTable).where(eq(categoriesTable.id, id));
     const rows = await db.select().from(categoriesTable);

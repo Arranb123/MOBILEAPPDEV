@@ -10,6 +10,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { AppContext } from './_layout';
 
+// login screen, also has a hint at the bottom showing the demo account details
 export default function LoginScreen() {
   const router = useRouter();
   const context = useContext(AppContext);
@@ -20,6 +21,7 @@ export default function LoginScreen() {
   if (!context) return null;
   const { setCurrentUser } = context;
 
+  // check the credentials against the db and create a session if they match
   const login = async () => {
     setError('');
     const rows = await db
