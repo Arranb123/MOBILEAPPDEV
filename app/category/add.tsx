@@ -52,11 +52,11 @@ export default function AddCategory() {
 }
 
 const styles = StyleSheet.create({
-  safeArea: { backgroundColor: '#FFF7ED', flex: 1, padding: 20 },
+  safeArea: { backgroundColor: '#F1F5F9', flex: 1, padding: 20 },
   form: { marginBottom: 6 },
   buttonSpacing: { marginTop: 10 },
-  colorLabel: { color: '#334155', fontSize: 13, fontWeight: '600', marginBottom: 10 },
-  colorRow: { flexDirection: 'row', flexWrap: 'wrap', gap: 10, marginBottom: 12 },
-  colorDot: { borderRadius: 999, height: 32, width: 32 },
-  colorDotSelected: { borderColor: '#111827', borderWidth: 3 },
+  colorLabel: { color: '#374151', fontSize: 10, fontWeight: '700', letterSpacing: 0.5, marginBottom: 12, textTransform: 'uppercase' },
+  colorRow: { flexDirection: 'row', flexWrap: 'wrap', gap: 12, marginBottom: 20 },
+  colorDot: { borderRadius: 999, height: 36, width: 36 },
+  colorDotSelected: { borderColor: '#0F172A', borderWidth: 3, transform: [{ scale: 1.15 }] },
 });

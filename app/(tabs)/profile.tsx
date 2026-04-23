@@ -64,42 +64,54 @@ export default function ProfileScreen() {
     router.replace('/login');
   };
 
-  const bg = darkMode ? '#111827' : '#FFF7ED';
-  const cardBg = darkMode ? '#1F2937' : '#FFFFFF';
-  const textPrimary = darkMode ? '#F9FAFB' : '#111827';
-  const textSecondary = darkMode ? '#9CA3AF' : '#6B7280';
+  const bg = darkMode ? '#0F172A' : '#F1F5F9';
+  const cardBg = darkMode ? '#1E293B' : '#FFFFFF';
+  const textPrimary = darkMode ? '#F1F5F9' : '#0F172A';
+  const textSecondary = darkMode ? '#94A3B8' : '#64748B';
+  const borderColor = darkMode ? '#334155' : '#F1F5F9';
 
   return (
     <SafeAreaView style={[styles.safeArea, { backgroundColor: bg }]}>
       <ScreenHeader title="Profile" subtitle="Your account details." />
-      <View style={[styles.infoCard, { backgroundColor: cardBg }]}>
+
+      <View style={styles.avatarSection}>
+        <View style={styles.avatar}>
+          <Text style={styles.avatarText}>{currentUser.name.charAt(0).toUpperCase()}</Text>
+        </View>
+        <Text style={[styles.userName, { color: textPrimary }]}>{currentUser.name}</Text>
+        <Text style={[styles.userEmail, { color: textSecondary }]}>{currentUser.email}</Text>
+      </View>
+
+      <View style={[styles.card, { backgroundColor: cardBg }]}>
         <View style={styles.infoRow}>
-          <Text style={[styles.infoLabel, { color: textSecondary }]}>Name</Text>
+          <Text style={[styles.infoLabel, { color: textSecondary }]}>Full Name</Text>
           <Text style={[styles.infoValue, { color: textPrimary }]}>{currentUser.name}</Text>
         </View>
-        <View style={styles.divider} />
+        <View style={[styles.divider, { backgroundColor: borderColor }]} />
         <View style={styles.infoRow}>
           <Text style={[styles.infoLabel, { color: textSecondary }]}>Email</Text>
           <Text style={[styles.infoValue, { color: textPrimary }]}>{currentUser.email}</Text>
         </View>
+        <View style={[styles.divider, { backgroundColor: borderColor }]} />
+        <View style={styles.infoRow}>
+          <Text style={[styles.infoLabel, { color: textSecondary }]}>Dark Mode</Text>
+          <Switch
+            value={darkMode}
+            onValueChange={toggleDarkMode}
+            trackColor={{ false: '#CBD5E1', true: '#EA580C' }}
+            thumbColor="#FFFFFF"
+          />
+        </View>
       </View>
-      <View style={[styles.toggleRow, { backgroundColor: cardBg }]}>
-        <Text style={[styles.toggleLabel, { color: textPrimary }]}>Dark Mode</Text>
-        <Switch
-          value={darkMode}
-          onValueChange={toggleDarkMode}
-          trackColor={{ false: '#D1D5DB', true: '#C2410C' }}
-          thumbColor="#FFFFFF"
-        />
-      </View>
-      <View style={styles.buttonSpacing}>
+
+      <View style={styles.buttonGroup}>
         <PrimaryButton label="Export to CSV" onPress={exportCSV} />
-      </View>
-      <View style={styles.buttonSpacing}>
-        <PrimaryButton label="Logout" variant="secondary" onPress={logout} />
-      </View>
-      <View style={styles.buttonSpacing}>
-        <PrimaryButton label="Delete Profile" variant="danger" onPress={deleteProfile} />
+        <View style={styles.buttonGap}>
+          <PrimaryButton label="Logout" variant="secondary" onPress={logout} />
+        </View>
+        <View style={styles.buttonGap}>
+          <PrimaryButton label="Delete Profile" variant="danger" onPress={deleteProfile} />
+        </View>
       </View>
       <Text style={[styles.warning, { color: textSecondary }]}>Deleting your profile removes all data permanently.</Text>
     </SafeAreaView>
@@ -107,14 +119,35 @@ export default function ProfileScreen() {
 }
 
 const styles = StyleSheet.create({
-  safeArea: { flex: 1, padding: 20 },
-  infoCard: { borderColor: '#E5E7EB', borderWidth: 1, marginBottom: 16, padding: 16 },
-  infoRow: { flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 6 },
-  divider: { backgroundColor: '#F3F4F6', height: 1, marginVertical: 4 },
-  infoLabel: { fontSize: 14 },
-  infoValue: { fontSize: 14, fontWeight: '600' },
-  toggleRow: { alignItems: 'center', borderColor: '#E5E7EB', borderWidth: 1, flexDirection: 'row', justifyContent: 'space-between', marginBottom: 4, padding: 16 },
-  toggleLabel: { fontSize: 14, fontWeight: '600' },
-  buttonSpacing: { marginTop: 10 },
+  safeArea: { flex: 1, paddingHorizontal: 20, paddingTop: 10 },
+  avatarSection: { alignItems: 'center', marginBottom: 24, marginTop: 8 },
+  avatar: {
+    alignItems: 'center',
+    backgroundColor: '#EA580C',
+    borderRadius: 40,
+    height: 72,
+    justifyContent: 'center',
+    marginBottom: 12,
+    width: 72,
+  },
+  avatarText: { color: '#FFFFFF', fontSize: 28, fontWeight: '800' },
+  userName: { fontSize: 20, fontWeight: '800', marginBottom: 2 },
+  userEmail: { fontSize: 14 },
+  card: {
+    borderRadius: 14,
+    elevation: 2,
+    marginBottom: 20,
+    paddingHorizontal: 16,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.07,
+    shadowRadius: 6,
+  },
+  infoRow: { alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 14 },
+  divider: { height: 1 },
+  infoLabel: { fontSize: 14, fontWeight: '500' },
+  infoValue: { fontSize: 14, fontWeight: '700' },
+  buttonGroup: {},
+  buttonGap: { marginTop: 10 },
   warning: { fontSize: 12, marginTop: 16, textAlign: 'center' },
 });

@@ -64,13 +64,13 @@ export default function AddApplication() {
 }
 
 const styles = StyleSheet.create({
-  safeArea: { backgroundColor: '#FFF7ED', flex: 1, padding: 20 },
+  safeArea: { backgroundColor: '#F1F5F9', flex: 1, padding: 20 },
   form: { marginBottom: 6 },
   cancelButton: { marginTop: 10 },
-  categoryLabel: { color: '#334155', fontSize: 13, fontWeight: '600', marginBottom: 8 },
-  categoryRow: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginBottom: 12 },
-  chip: { borderWidth: 1.5, paddingHorizontal: 14, paddingVertical: 7 },
-  chipText: { color: '#374151', fontSize: 13, fontWeight: '500' },
-  chipTextSelected: { color: '#FFFFFF', fontWeight: '600' },
-  error: { color: '#B91C1C', fontSize: 13, marginBottom: 12 },
+  categoryLabel: { color: '#374151', fontSize: 10, fontWeight: '700', letterSpacing: 0.5, marginBottom: 10, textTransform: 'uppercase' },
+  categoryRow: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginBottom: 14 },
+  chip: { borderRadius: 20, borderWidth: 1.5, paddingHorizontal: 16, paddingVertical: 8 },
+  chipText: { color: '#475569', fontSize: 13, fontWeight: '600' },
+  chipTextSelected: { color: '#FFFFFF', fontWeight: '700' },
+  error: { color: '#DC2626', fontSize: 13, fontWeight: '500', marginBottom: 12 },
 });

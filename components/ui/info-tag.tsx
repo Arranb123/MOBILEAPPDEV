@@ -8,7 +8,7 @@ type Props = {
 export default function InfoTag({ label, value }: Props) {
   return (
     <View style={styles.tag}>
-      <Text style={styles.label}>{label}</Text>
+      <Text style={styles.label}>{label}: </Text>
       <Text style={styles.value}>{value}</Text>
     </View>
   );
@@ -16,22 +16,22 @@ export default function InfoTag({ label, value }: Props) {
 
 const styles = StyleSheet.create({
   tag: {
-    backgroundColor: '#FEF3C7',
+    backgroundColor: '#F1F5F9',
+    borderRadius: 20,
     flexDirection: 'row',
     marginBottom: 6,
-    marginRight: 8,
-    paddingHorizontal: 8,
+    marginRight: 6,
+    paddingHorizontal: 10,
     paddingVertical: 4,
   },
   label: {
-    color: '#92400E',
+    color: '#64748B',
     fontSize: 12,
     fontWeight: '600',
-    marginRight: 4,
   },
   value: {
-    color: '#78350F',
+    color: '#1E293B',
     fontSize: 12,
-    fontWeight: '500',
+    fontWeight: '600',
   },
 });

@@ -11,7 +11,7 @@ export default function CategoryCard({ category, onDelete }: Props) {
   return (
     <View style={styles.card}>
       <View style={styles.row}>
-        <View style={[styles.dot, { backgroundColor: category.color }]} />
+        <View style={[styles.colorBar, { backgroundColor: category.color }]} />
         <Text style={styles.name}>{category.name}</Text>
       </View>
       <View style={styles.actions}>
@@ -24,9 +24,22 @@ export default function CategoryCard({ category, onDelete }: Props) {
 }
 
 const styles = StyleSheet.create({
-  card: { alignItems: 'center', backgroundColor: '#FFFFFF', borderColor: '#E5E7EB', borderWidth: 1, flexDirection: 'row', justifyContent: 'space-between', marginBottom: 12, padding: 14 },
+  card: {
+    alignItems: 'center',
+    backgroundColor: '#FFFFFF',
+    borderRadius: 14,
+    elevation: 2,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 12,
+    padding: 16,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.07,
+    shadowRadius: 6,
+  },
   row: { alignItems: 'center', flexDirection: 'row' },
-  dot: { height: 14, marginRight: 8, width: 14 },
-  name: { color: '#111827', fontSize: 16, fontWeight: '600' },
+  colorBar: { borderRadius: 4, height: 36, marginRight: 14, width: 5 },
+  name: { color: '#0F172A', fontSize: 16, fontWeight: '700' },
   actions: { flexDirection: 'row', gap: 8 },
 });

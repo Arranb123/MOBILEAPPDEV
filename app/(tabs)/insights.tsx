@@ -56,12 +56,12 @@ function BarChart({ data }: { data: { label: string; count: number; color: strin
 }
 
 const chartStyles = StyleSheet.create({
-  container: { marginTop: 8 },
-  row: { alignItems: 'center', flexDirection: 'row', marginBottom: 10 },
-  label: { color: '#374151', fontSize: 12, width: 90 },
-  track: { backgroundColor: '#F3F4F6', flex: 1, height: 14, overflow: 'hidden' },
-  bar: { height: '100%', minWidth: 4 },
-  count: { color: '#374151', fontSize: 12, fontWeight: '600', marginLeft: 8, width: 24 },
+  container: { marginTop: 10 },
+  row: { alignItems: 'center', flexDirection: 'row', marginBottom: 12 },
+  label: { color: '#475569', fontSize: 12, fontWeight: '600', width: 96 },
+  track: { backgroundColor: '#F1F5F9', borderRadius: 6, flex: 1, height: 12, overflow: 'hidden' },
+  bar: { borderRadius: 6, height: '100%', minWidth: 4 },
+  count: { color: '#0F172A', fontSize: 12, fontWeight: '700', marginLeft: 10, width: 24 },
 });
 
 export default function InsightsScreen() {
@@ -164,16 +164,37 @@ export default function InsightsScreen() {
 }
 
 const styles = StyleSheet.create({
-  safeArea: { backgroundColor: '#FFF7ED', flex: 1, paddingHorizontal: 18, paddingTop: 10 },
+  safeArea: { backgroundColor: '#F1F5F9', flex: 1, paddingHorizontal: 18, paddingTop: 10 },
   summaryRow: { flexDirection: 'row', gap: 10, marginBottom: 16 },
-  statCard: { alignItems: 'center', backgroundColor: '#FFFFFF', borderColor: '#E5E7EB', borderWidth: 1, flex: 1, paddingVertical: 16 },
-  statNumber: { color: '#111827', fontSize: 28, fontWeight: '700' },
-  statLabel: { color: '#6B7280', fontSize: 12, marginTop: 2 },
-  section: { backgroundColor: '#FFFFFF', borderColor: '#E5E7EB', borderWidth: 1, marginBottom: 16, padding: 16 },
-  sectionTitle: { color: '#111827', fontSize: 15, fontWeight: '700', marginBottom: 4 },
+  statCard: {
+    alignItems: 'center',
+    backgroundColor: '#FFFFFF',
+    borderRadius: 14,
+    elevation: 2,
+    flex: 1,
+    paddingVertical: 18,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.07,
+    shadowRadius: 6,
+  },
+  statNumber: { color: '#EA580C', fontSize: 30, fontWeight: '800' },
+  statLabel: { color: '#64748B', fontSize: 12, fontWeight: '600', marginTop: 3 },
+  section: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 14,
+    elevation: 2,
+    marginBottom: 16,
+    padding: 18,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.07,
+    shadowRadius: 6,
+  },
+  sectionTitle: { color: '#0F172A', fontSize: 15, fontWeight: '800', letterSpacing: -0.2, marginBottom: 6 },
   streakRow: { alignItems: 'center', flexDirection: 'row', marginTop: 8 },
-  streakNumber: { color: '#C2410C', fontSize: 40, fontWeight: '800', marginRight: 12 },
-  streakLabel: { color: '#6B7280', flex: 1, fontSize: 14 },
-  streakHint: { color: '#9CA3AF', fontSize: 13, marginTop: 8 },
-  empty: { color: '#9CA3AF', fontSize: 14, marginTop: 32, textAlign: 'center' },
+  streakNumber: { color: '#EA580C', fontSize: 44, fontWeight: '800', marginRight: 14 },
+  streakLabel: { color: '#64748B', flex: 1, fontSize: 14, fontWeight: '500' },
+  streakHint: { color: '#94A3B8', fontSize: 13, marginTop: 8 },
+  empty: { color: '#94A3B8', fontSize: 14, marginTop: 48, textAlign: 'center' },
 });

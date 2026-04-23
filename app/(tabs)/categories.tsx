@@ -41,7 +41,7 @@ export default function CategoriesScreen() {
 }
 
 const styles = StyleSheet.create({
-  safeArea: { backgroundColor: '#FFF7ED', flex: 1, paddingHorizontal: 18, paddingTop: 10 },
+  safeArea: { backgroundColor: '#F1F5F9', flex: 1, paddingHorizontal: 18, paddingTop: 10 },
   listContent: { paddingBottom: 24, paddingTop: 14 },
-  empty: { color: '#9CA3AF', fontSize: 14, marginTop: 32, textAlign: 'center' },
+  empty: { color: '#94A3B8', fontSize: 14, marginTop: 48, textAlign: 'center' },
 });
