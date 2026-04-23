@@ -3,7 +3,7 @@ import ScreenHeader from '@/components/ui/screen-header';
 import { db } from '@/db/client';
 import { applications as applicationsTable, categories as categoriesTable, sessions as sessionsTable, settings as settingsTable, statusLogs as statusLogsTable, targets as targetsTable, users as usersTable } from '@/db/schema';
 import { eq } from 'drizzle-orm';
-import * as FileSystem from 'expo-file-system';
+import * as FileSystem from 'expo-file-system/legacy';
 import { useRouter } from 'expo-router';
 import * as Sharing from 'expo-sharing';
 import { useContext } from 'react';
@@ -42,7 +42,7 @@ export default function ProfileScreen() {
     }).join('\n');
     const csv = header + rows;
     const path = FileSystem.documentDirectory + 'applications.csv';
-    await FileSystem.writeAsStringAsync(path, csv, { encoding: FileSystem.EncodingType.UTF8 });
+    await FileSystem.writeAsStringAsync(path, csv, { encoding: 'utf8' });
     const canShare = await Sharing.isAvailableAsync();
     if (canShare) {
       await Sharing.shareAsync(path, { mimeType: 'text/csv', dialogTitle: 'Export Applications' });
